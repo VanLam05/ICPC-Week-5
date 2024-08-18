@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 #define ll long long
@@ -23,14 +23,19 @@ void solve()
     string s, t;
     cin >> s >> t;
 
-    vi f(26, -1);
-    for (int i=0; i<s.length(); i++) {
-        if ((f[s[i] - 'a'] == -1 && f[t[i] - 'a'] == -1) || (f[s[i] - 'a'] == t[i] - 'a' && f[t[i] - 'a'] == s[i] - 'a')) {
-            f[s[i] - 'a'] = t[i] - 'a';
-            f[t[i] - 'a'] = s[i] - 'a';
-        } else {
-            no
-            return;
+    vi f(26, -1), g(26, -1);
+    for (int i = 0; i < s.length(); i++)
+    {
+        int si = s[i] - 'a';
+        int ti = t[i] - 'a';
+        if (f[si] == -1 && g[ti] == -1)
+        {
+            f[si] = ti;
+            g[ti] = si;
+        }
+        else if (f[si] != ti || g[ti] != si)
+        {
+            no return;
         }
     }
     yes
@@ -38,10 +43,12 @@ void solve()
 
 signed main()
 {
-    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
     int t = 1;
-    //cin >> t;
-    while(t--)
+    // cin >> t;
+    while (t--)
     {
         solve();
     }
